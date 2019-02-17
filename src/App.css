@@ -1,3 +1,46 @@
+body {
+  font-family: Varela Round;
+}
+.details {
+  font-size: 13px;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+.details p {
+  line-height: 1.4rem;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+input {
+  background: rgba(0, 0, 0, 0.1);
+  border: 0.5px solid #525050;
+  border-radius: 250px;
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.575rem 0.95rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  color: #fff;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.center {
+  justify-content: center;
+  animation: 1s ease-out 0s 1 slideInFromRight;
+}
+.weather-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+.temp {
+  font-size: 12px;
+}
+.cityText {
+  font-size: 210%;
+  animation: 1s ease-out 0s 1 slideInFromLeft;
+}
+
 .App {
   text-align: center;
 }
@@ -10,6 +53,9 @@
 
 .App-header {
   background-color: #282c34;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.4)),
+    url(https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260);
+  background-size: cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,11 +69,30 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.w-250 {
+  width: 150px;
+  padding: 5px;
+}
+
+.w-250:hover {
+  background: #33333329;
+  border-radius: 8px;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(+100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

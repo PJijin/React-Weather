@@ -1,24 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
+import Weather from './Weather';
+class App extends Component { 
+  state={
+    weather: {},
+    parent: {},
+    details: {title:null}, 
+  };
 
-class App extends Component {
+  componentDidMount(){
+    // Fetch data from JSON Api 🔥 
+    axios.get('https://api.myjson.com/bins/x3iey')
+    .then(res => {
+      const {consolidated_weather:weather,parent} = res.data;
+      const details = {
+        title: res.data.title, 
+        latt_long: res.data.latt_long,
+        type: res.data.location_type,
+        tzone: res.data.timezone
+      };
+      this.setState({ weather , parent, details});
+     })
+     
+  } 
+
   render() {
-    return (
+    const {details} = this.state;
+      return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header className="App-header">  
+          <h3 className="cityText">{details.title}</h3>
+          <div className="details m-2">
+          <p>{details.type}</p>
+          <p>Timezone: {details.tzone}</p>
+          </div>
+          <div className="row center">{Object.keys(this.state.weather).map(key => <Weather key={key} index={key} details={this.state.weather[key]} />)}</div>
         </header>
       </div>
     );
